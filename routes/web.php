@@ -1,5 +1,12 @@
 <?php
 
+//Rotas da forma correta
+//Chamando o método index do ProductController
+//É uma boa prática não deixar lógicas nas rotas
+//como nos exemplos iniciais, mas sim chamar um controller
+//para ele sim fazer os returns
+Route::get('products', 'ProductController@index')->name('products.index');
+
 //Grupo de rotas com middleware (filtro) de autenticação
 //Ao utilizar uma rota com middleware Auth a rota é direcionada
 //para a login caso o user não esteja autenticado
