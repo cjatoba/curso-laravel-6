@@ -1,11 +1,15 @@
 <?php
 
+//A rota resource já cria as rotas necessárias para o CRUD
+Route::resource('products', 'ProductController');
+
+
 //Rotas da forma correta
 //Chamando o método index do ProductController
 //É uma boa prática não deixar lógicas nas rotas
 //como nos exemplos iniciais, mas sim chamar um controller
 //para ele sim fazer os returns
-
+/*
 //Rota para deletar um produto
 Route::delete('products/[id]', 'ProductController@destroy')->name('products.destroy');
 //Rota para editar um registro
@@ -20,13 +24,16 @@ Route::get('products/{id}', 'ProductController@show')->name('products.show');
 Route::get('products', 'ProductController@index')->name('products.index');
 //Rota para cadastro de produto (Para cadastrar utilizar o verbo http post)
 Route::post('products', 'ProductController@store')->name('products.store');
+*/
 
-//Grupo de rotas com middleware (filtro) de autenticação
-//Ao utilizar uma rota com middleware Auth a rota é direcionada
-//para a login caso o user não esteja autenticado
 Route::get('/login', function() {
     return 'Tela de login';
 })->name('login');
+
+/*
+//Grupo de rotas com middleware (filtro) de autenticação
+//Ao utilizar uma rota com middleware Auth a rota é direcionada
+//para a login caso o user não esteja autenticado
 
 //Grupo de middleware, prefix, namespace e name 
 //pode ser apenas um ou um array com vários midlewares
@@ -114,4 +121,4 @@ Route::get('/contato', function(){
 //Rota para página na raiz da pasta view
 Route::get('/', function () {
     return view('welcome');
-});
+});*/
