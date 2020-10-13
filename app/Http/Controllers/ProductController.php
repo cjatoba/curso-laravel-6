@@ -17,4 +17,9 @@ class ProductController extends Controller
             //a saída para o formato Json
             return $products;
         }
+
+        public function show($id)
+        {
+            return "Exibindo o produto de id {$id}";
+        }
 }

@@ -5,6 +5,7 @@
 //É uma boa prática não deixar lógicas nas rotas
 //como nos exemplos iniciais, mas sim chamar um controller
 //para ele sim fazer os returns
+Route::get('products/{id}', 'ProductController@show')->name('products.show');
 Route::get('products', 'ProductController@index')->name('products.index');
 
 //Grupo de rotas com middleware (filtro) de autenticação
