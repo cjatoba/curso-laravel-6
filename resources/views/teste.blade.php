@@ -7,6 +7,19 @@
     <title>Minha View</title>
 </head>
 <body>
-    <h1>{{ $teste }}</h1>
+    <!-- 
+        Este formato de impressão utiliza a função httpspecialchars
+        que proteje de ataques Xss, pois imprime o conteúdo real da string
+        não executa a tag <script> por exemplo se ela vier na string
+    -->
+    {{ $teste }}
+
+    <!--
+        Este formato de impressão não utiliza a função httpspecialchars
+        deve ser utilizado para imprimir um conteúdo formatado, um <h1>
+        por exemplo, mas somente quando tiver certeza de onde vem o conteúdo
+        pois deixa a aplicação vulnerável
+    -->
+    {!! $teste !!}
 </body>
 </html>
