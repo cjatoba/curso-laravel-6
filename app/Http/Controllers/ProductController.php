@@ -10,7 +10,20 @@ class ProductController extends Controller
 
     public function __construct(Request $request)
     {
-        $this->request = $request;    
+        $this->request = $request;
+        
+        //Aplicando middleware (filtros)
+
+        //Middleware apenas em métodos específicos
+        /*$this->middleware('auth')->only([
+            'create', 'store'
+        ]);*/
+
+
+        //Middleware não são aplicados em métodos específicos
+        $this->middleware('auth')->except([
+            'index', 'show'
+        ]);
     }
     /**
      * Display a listing of the resource.
