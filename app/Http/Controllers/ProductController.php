@@ -10,6 +10,7 @@ class ProductController extends Controller
 
     public function __construct(Request $request)
     {
+
         $this->request = $request;
         
         //Aplicando middleware (filtros)
@@ -32,7 +33,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return "Listagem de Produtos";
+        $teste = 654;
+        
+        //Enviando variáveis para a view
+        //o compact envia as variáveis separadas por vírgula em formato de array
+        //por exemplo compact('var1', 'var2', 'var3')
+        return view('teste', compact('teste'));
     }
 
     /**
