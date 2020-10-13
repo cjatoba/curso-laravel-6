@@ -22,4 +22,29 @@ class ProductController extends Controller
         {
             return "Exibindo o produto de id {$id}";
         }
+
+        public function create()
+        {
+            return "Criar um novo produto";
+        }
+
+        public function edit($id)
+        {
+            return "Editando o produto com id {$id}";
+        }
+
+        public function store()
+        {
+            return 'Cadastro de novo produto';
+        }
+
+        public function update($id)
+        {
+            return "Editando o produto {$id}";
+        }
+
+        public function destroy($id)
+        {
+            return "Produto com id {$id} deletado";
+        }
 }

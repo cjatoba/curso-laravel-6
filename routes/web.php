@@ -5,8 +5,21 @@
 //É uma boa prática não deixar lógicas nas rotas
 //como nos exemplos iniciais, mas sim chamar um controller
 //para ele sim fazer os returns
+
+//Rota para deletar um produto
+Route::delete('products/[id]', 'ProductController@destroy')->name('products.destroy');
+//Rota para editar um registro
+Route::put('products/{id}', 'ProductControlle@update')->name('products.update');
+//Rota para editar um produto
+Route::get('products/edit/{id}', 'ProductController@edit')->name('products.edit');
+//Rota para criar um produto
+Route::get('products/create', 'ProductController@create')->name('products.create');
+//Rota para exibir um produto específico
 Route::get('products/{id}', 'ProductController@show')->name('products.show');
+//Rota para listar todos os produtos
 Route::get('products', 'ProductController@index')->name('products.index');
+//Rota para cadastro de produto (Para cadastrar utilizar o verbo http post)
+Route::post('products', 'ProductController@store')->name('products.store');
 
 //Grupo de rotas com middleware (filtro) de autenticação
 //Ao utilizar uma rota com middleware Auth a rota é direcionada
