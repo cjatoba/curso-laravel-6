@@ -7,30 +7,26 @@ Route::get('/login', function() {
     return 'Tela de login';
 })->name('login');
 
-//Grupo de middleware, pode ser apenas um ou um array com vários midlewares
-Route::middleware(['auth'])->group(function() {
-        //Grupo de prefixo, para agrupar nesse caso o prefixo admin
-        //e não ser necessário usar /admin nas descrições das rotas
-        Route::prefix('admin')->group(function() {
-                
-            Route::get('/dashboard', function() {
-                return 'Home Admin';
-            });
+//Grupo de middleware, prefix, namespace e name 
+//pode ser apenas um ou um array com vários midlewares
+Route::group([
+        'middleware' => [],
+        'prefix' => 'admin',
+        'namespace' => 'Admin',
+        'name' => 'admin.'
+], function() {
+    Route::get('/dashboard', 'TesteController@teste')->name('dashboard');
 
-            Route::get('/financeiro', function() {
-                return 'Home Financeiro';
-            });
+    Route::get('/financeiro', 'TesteController@teste')->name('financeiro');
 
-            Route::get('/produtos', function() {
-                return 'Admin Produtos';
-            });
-            //Rota / dentro do prefixo admin (admin/)
-            Route::get('/', function() {
-                return 'Admin';
-            });
+    Route::get('/produtos', 'TesteController@teste')->name('produtos');
 
-        });    
-    });
+    //Rota / dentro do prefixo admin (admin/)
+    Route::get('/', function() {
+        return redirect('dashboard');
+    })->name('admin.home');
+
+});
 
 //Rota nomeada, melhor forma de utilizar e facilitar a manutenção
 //Caso seja o nome da rota a ser digitada no navegador precise
