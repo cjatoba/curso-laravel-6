@@ -22,9 +22,9 @@ class ProductController extends Controller
 
 
         //Middleware não são aplicados em métodos específicos
-        $this->middleware('auth')->except([
-            'index', 'show', 'create', 'store'
-        ]);
+        /*$this->middleware('auth')->except([
+            'index', 'show'
+        ]);*/
     }
     /**
      * Display a listing of the resource.
@@ -83,7 +83,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.pages.products.edit', compact('id'));
     }
 
     /**
@@ -95,7 +95,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd('Editando o produto {$id}');
     }
 
     /**

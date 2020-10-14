@@ -1,7 +1,7 @@
 <?php
 
 //A rota resource já cria as rotas necessárias para o CRUD
-Route::resource('products', 'ProductController')/*->middleware('auth')*/;
+Route::resource('products', 'ProductController');
 
 
 //Rotas da forma correta
