@@ -5,6 +5,17 @@
 @section('content')
     <h1>Exibindo os produtos</h1>
 
+    @component('admin.components.card')
+        @slot('title')
+            <!--O conteúdo abaixo é atribuído a variável title no component card -->
+            Título do card
+        @endslot
+        <!--O conteúdo abaixo é atribuído a variável slot do component card -->
+        Card de exemplo
+    @endcomponent
+
+    <hr>
+
     <!--Reaproveitamento de código com envio de valor de uma view para outra-->
     @include('admin.includes.alerts', ['content' => 'Mensagem da view index para a view alert'])
 
