@@ -5,6 +5,11 @@
 @section('content')
     <h1>Exibindo os produtos</h1>
 
+    <!--Reaproveitamento de código com envio de valor de uma view para outra-->
+    @include('admin.alerts.alerts', ['content' => 'Mensagem da view index para a view alert'])
+
+    <hr>    
+
     @if(isset($products))
         @foreach($products as $product)
             <!-- O $loop->last verifica se é o último elemento do foreach-->
