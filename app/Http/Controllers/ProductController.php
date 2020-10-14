@@ -34,11 +34,12 @@ class ProductController extends Controller
     public function index()
     {
         $teste = 123;
-        
+        $teste2 = 654;
+        $teste3 = [];
         //Enviando variáveis para a view
         //o compact envia as variáveis separadas por vírgula em formato de array
         //por exemplo compact('var1', 'var2', 'var3')
-        return view('admin.pages.products.index', compact('teste'));
+        return view('admin.pages.products.index', compact('teste', 'teste2', 'teste3'));
     }
 
     /**
