@@ -6,7 +6,7 @@
     <h1>Exibindo os produtos</h1>
 
     <!--Reaproveitamento de código com envio de valor de uma view para outra-->
-    @include('admin.alerts.alerts', ['content' => 'Mensagem da view index para a view alert'])
+    @include('admin.includes.alerts', ['content' => 'Mensagem da view index para a view alert'])
 
     <hr>    
 
