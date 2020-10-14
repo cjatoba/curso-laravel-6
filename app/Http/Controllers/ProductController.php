@@ -23,7 +23,7 @@ class ProductController extends Controller
 
         //Middleware não são aplicados em métodos específicos
         $this->middleware('auth')->except([
-            'index', 'show'
+            'index', 'show', 'create', 'store'
         ]);
     }
     /**
@@ -50,7 +50,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.products.create');
     }
 
     /**
@@ -61,7 +61,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd('Cadastrando');
     }
 
     /**
