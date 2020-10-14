@@ -82,6 +82,24 @@
     @endswitch
 @endsection
 
-<style>
-    .last {background: #CCC;}
-</style>
+<!--
+    O estilo abaixo é aplicado somente nesta página
+    preenchendo o stack('style') definido no template
+    admin.layouts.app
+-->
+@push('styles')
+    <style>
+        .last {background: #CCC;}
+    </style>
+@endpush
+
+<!--
+    O script abaixo é aplicado somente nesta página
+    preenchendo o stack('script') definido no template
+    admin.layouts.app
+-->
+@push('scripts')
+    <script>
+        document.body.style.background = '#efefef'
+    </script>
+@endpush
