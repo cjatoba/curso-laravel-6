@@ -5,6 +5,23 @@
 @section('content')
     <h1>Exibindo os produtos</h1>
 
+    @if(isset($products))
+        @foreach($products as $product)
+            <!-- O $loop->last verifica se é o último elemento do foreach-->
+            <p class="@if($loop->last) last @endif">{{ $product }}</p>            
+        @endforeach
+    @endif
+
+    <hr>
+    @forelse($products as $product)
+        <!-- O $loop->first verifica se é o primeiro elemento do foreach-->
+        <p class="@if($loop->first) last @endif">{{ $product }}</p>
+    @empty
+        <p>Retorno caso o array seja vazio</p>
+    @endforelse
+
+    <hr>
+
     @if($teste === '123')
         <p>É igual</p>
     @elseif($teste == 123)
@@ -48,3 +65,7 @@
             Retorno = default
     @endswitch
 @endsection
+
+<style>
+    .last {background: #CCC;}
+</style>
