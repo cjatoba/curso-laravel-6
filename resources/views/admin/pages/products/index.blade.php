@@ -11,30 +11,30 @@
 
     @component('admin.components.card')
         @slot('title')
-            <!--O conteúdo abaixo é atribuído a variável title no component card -->
+            {{-- O conteúdo abaixo é atribuído a variável title no component card --}}
             Título do card
         @endslot
-        <!--O conteúdo abaixo é atribuído a variável slot do component card -->
+        {{--O conteúdo abaixo é atribuído a variável slot do component card --}}
         Card de exemplo
     @endcomponent
 
     <hr>
 
-    <!--Reaproveitamento de código com envio de valor de uma view para outra-->
+    {{--Reaproveitamento de código com envio de valor de uma view para outra--}}
     @include('admin.includes.alerts', ['content' => 'Mensagem da view index para a view alert'])
 
     <hr>    
 
     @if(isset($products))
         @foreach($products as $product)
-            <!-- O $loop->last verifica se é o último elemento do foreach-->
+            {{-- O $loop->last verifica se é o último elemento do foreach--}}
             <p class="@if($loop->last) last @endif">{{ $product }}</p>            
         @endforeach
     @endif
 
     <hr>
     @forelse($products as $product)
-        <!-- O $loop->first verifica se é o primeiro elemento do foreach-->
+        {{-- O $loop->first verifica se é o primeiro elemento do foreach--}}
         <p class="@if($loop->first) last @endif">{{ $product }}</p>
     @empty
         <p>Retorno caso o array seja vazio</p>
@@ -86,22 +86,22 @@
     @endswitch
 @endsection
 
-<!--
+{{--
     O estilo abaixo é aplicado somente nesta página
     preenchendo o stack('style') definido no template
     admin.layouts.app
--->
+--}}
 @push('styles')
     <style>
         .last {background: #CCC;}
     </style>
 @endpush
 
-<!--
+{{--
     O script abaixo é aplicado somente nesta página
     preenchendo o stack('script') definido no template
     admin.layouts.app
--->
+--}}
 @push('scripts')
     <script>
         document.body.style.background = '#efefef'
