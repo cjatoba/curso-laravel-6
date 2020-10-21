@@ -13,7 +13,13 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    //*O parâmetro local aponta para a configuração dentro de disks local
+    //que segue abaixo no arquivo e armazena os arquivos na pasta storage/app 
+    //ficando restrito a aplicação
+    //*O parâmetro public aponta para a configuração dentro de disks public 
+    //armazena os arquivos na pasta storage/public 
+    //ficando disponível externamente
+    'default' => env('FILESYSTEM_DRIVER', 'public'),
 
     /*
     |--------------------------------------------------------------------------
