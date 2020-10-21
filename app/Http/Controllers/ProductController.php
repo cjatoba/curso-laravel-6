@@ -90,7 +90,33 @@ class ProductController extends Controller
         //O except retorna todos os campos submetidos
         //exceto o campo especificado, no caso do exemplo não retorna o valor de _token
         //podem ser passados vários campos separados por vírgula ou um array com os campos 
-        dd($request->except('_token'));
+        //dd($request->except('_token'));
+
+        //Upload de arquivo
+
+        //'photo' é o nome do campo do tipo file que envio o arquivo pelo formulário
+        //isValid retorna true caso o arquivo seja valido
+        if($request->file('photo')->isValid()){
+            //extension retorna a extenção do arquivo
+            //dd($request->photo->extension());
+            
+            //getClientOriginalName retorna o nome original do arquivo
+            //Não é recomendado usar esse nome para guardar pois pode se repetir
+            //e sobreescrever outros
+            //dd($request->photo->getClientOriginalName());
+
+            //Faz o upload do arquivo por padrão na pasta storage/app
+            //para que salve o arquivo em uma subpasta o caminho
+            //dela deve ser especificado como parâmetro para o 
+            //método store, o Laravel já cria por padrão um nome
+            //único para o arquivo
+            dd($request->file('photo')->store('products'));
+
+            //Faz o upload do arquivo com um nome personalizado
+            //$nameFile = $request->name . '.' . $request->photo->extension();
+            //dd($request->file('photo')->storeAs('products', $nameFile));
+        }
+
     }
 
     /**
