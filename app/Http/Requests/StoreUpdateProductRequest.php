@@ -13,6 +13,7 @@ class StoreUpdateProductRequest extends FormRequest
      */
     public function authorize()
     {
+        //Verifica se usuário tem permissão
         return true;
     }
 
