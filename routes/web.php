@@ -117,8 +117,8 @@ Route::get('/empresa', function(){
 Route::get('/contato', function(){
     return view("site.contact");
 });
-
+ */
 //Rota para página na raiz da pasta view
 Route::get('/', function () {
     return view('welcome');
-});*/
+});
