@@ -14,7 +14,8 @@ return [
     | you may use many connections at once using the Database library.
     |
     */
-
+    //Aqui é verificado o valor de DB_CONNECTION no arquivo .env
+    //caso não exista ele assume o valor mysql e se conecta ao banco mysql
     'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
