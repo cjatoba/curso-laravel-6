@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateProductRequest;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -34,14 +35,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $teste = 123;
-        $teste2 = 654;
-        $teste3 = [1,2,3,4,5];
-        $products = ['Violão', 'Teclado', 'Bateria', 'Contra baixo'];
+        //all() retorna um array/colection com todos os produtos
+        //ou pode ser utilizada também a função get() que tem o mesmo retorno
+        $products = Product::get();
         //Enviando variáveis para a view
-        //o compact envia as variáveis separadas por vírgula em formato de array
-        //por exemplo compact('var1', 'var2', 'var3')
-        return view('admin.pages.products.index', compact('teste', 'teste2', 'teste3', 'products'));
+        //Obs a função compact foi descontinuada no PHP, utilizar um array como abaixo
+        return view('admin.pages.products.index', [
+            'products' => $products
+        ]);
     }
 
     /**
