@@ -133,7 +133,19 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return "Detalhes do produto {$id}";
+        //A função where faz uma busca nesse caso no model Product
+        //vai buscar no campo 'id'
+        //outra forma de bisca é utilizando a função find que recupera
+        //um item através do seu id
+        //caso o valor não seja encontrado é retornado NULL
+        //$product = Product::where('id', $id)->first();
+        if (!$product = Product::find($id))
+            //redirect()->back() retorna ao ponto anterior
+            return redirect()->back();
+
+        return view('admin.pages.products.show', [
+            'product' => $product
+        ]);
     }
 
     /**
