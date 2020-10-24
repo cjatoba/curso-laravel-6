@@ -66,63 +66,16 @@ class ProductController extends Controller
      */
     public function store(StoreUpdateProductRequest $request)
     {
-        dd('OK');
-        // Request->all() retorna todos os campos do formulário submetido
-        //dd($request->all());
-        
-        /* 
-            Request->only() retorna dados específicos, 
-            pode ser somente um passando uma string ou vários passando em um array 
-         */
-        //dd($request->only(['name', 'description']));
-        
-        /* 
-            Request->name retorna o valor de um atributo em específico, 
-            no caso do exemplo retorna o valor do atributo name 
-         */
-        //dd($request->name);
+        //Obtendo os valores enviados pela view
+        //no lugar da função only() podemos utilizar
+        //a função all() para retornar todos os dados do form
+        $data = $request->only('name', 'description', 'price');
 
-        // O has verifica se um valor existe e retorna true ou false
-        //dd($request->has('name'));
-        
-        //O input retorna o valor do campo caso ele exista 
-        //caso contrário retorna null
-        //dd($request->input('name'));
-        
-        //O input com um segundo parâmetro retorna o valor do campo caso ele não seja vazio, 
-        //caso contrário retorna o valor do segundo parâmetro no caso do exemplo teste
-        //dd($request->input('name', 'teste'));
-        
-        //O except retorna todos os campos submetidos
-        //exceto o campo especificado, no caso do exemplo não retorna o valor de _token
-        //podem ser passados vários campos separados por vírgula ou um array com os campos 
-        //dd($request->except('_token'));
+        //Nesse ponto todos os dados vindos do form
+        //são gravados no banco
+        Product::create($data);
 
-        //Upload de arquivo
-
-        //'photo' é o nome do campo do tipo file que envio o arquivo pelo formulário
-        //isValid retorna true caso o arquivo seja valido
-        if($request->file('photo')->isValid()){
-            //extension retorna a extenção do arquivo
-            //dd($request->photo->extension());
-            
-            //getClientOriginalName retorna o nome original do arquivo
-            //Não é recomendado usar esse nome para guardar pois pode se repetir
-            //e sobreescrever outros
-            //dd($request->photo->getClientOriginalName());
-
-            //Faz o upload do arquivo por padrão na pasta storage/app
-            //para que salve o arquivo em uma subpasta o caminho
-            //dela deve ser especificado como parâmetro para o 
-            //método store, o Laravel já cria por padrão um nome
-            //único para o arquivo
-            dd($request->file('photo')->store('products'));
-
-            //Faz o upload do arquivo com um nome personalizado
-            //$nameFile = $request->name . '.' . $request->photo->extension();
-            //dd($request->file('photo')->storeAs('products', $nameFile));
-        }
-
+        return redirect()->route('products.index');
     }
 
     /**

@@ -1,8 +1,11 @@
-<div class="alert"
-    {{--
-        Para configurar um valor default no caso de uma variável não existir
-        utilizar o ?? após a variável seguido do conteúdo default a ser exibido
-    --}}
-    <p>Alert - {{ $content ?? 'Retorno caso a variável content não exista' }}</p>
-    {{-- Exemplo de comentário no blade --}}
-</div>
+{{-- 
+    errors any() verifica se existe erro, se existir redireciona para a página anterior
+    e exibe as mensagens de validação
+--}}
+@if ($errors->any())
+    <ul>
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li> 
+        @endforeach
+    </ul>
+@endif

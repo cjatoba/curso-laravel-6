@@ -33,8 +33,9 @@ class StoreUpdateProductRequest extends FormRequest
             //nullable: campo não obrigátorio
             //image: verifica se o arquivo é uma imagem
             'name' => 'required|min:3:max:255',
-            'description' => 'nullable|min:3|max:10000',
-            'photo' => 'required|image'
+            'description' => 'required|min:3|max:10000',
+            'price' => 'required',
+            'image' => 'nullable|image'
 
             //Uma outra forma de representação é em formato se array
             //como no exemplo abaixo:
@@ -50,7 +51,8 @@ class StoreUpdateProductRequest extends FormRequest
         return [
             'name.required' => 'O campo nome é obrigatório',
             'name.min' => 'O campo nome deve conter no mínimo 3 caracteres',
-            'photo.required' => 'É obrigatório o upload de uma foto'
+            'price.required' => 'O campo preço é obrigatório',
+            'image.required' => 'É obrigatório o upload de uma foto'
         ];
     }
 }
