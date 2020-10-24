@@ -35,9 +35,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //all() retorna um array/colection com todos os produtos
-        //ou pode ser utilizada também a função get() que tem o mesmo retorno
-        $products = Product::get();
+        //Paginar os registros
+        //por padrão são exibidos 15 registros por página
+        //para alterar o valor inserir um número como parâmetro da função paginate
+        //a função latest() lista o últimos registros
+        //sem esta função são listados os primeiros registros'
+        $products = Product::latest()->paginate();
         //Enviando variáveis para a view
         //Obs a função compact foi descontinuada no PHP, utilizar um array como abaixo
         return view('admin.pages.products.index', [

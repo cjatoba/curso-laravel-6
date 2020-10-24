@@ -26,5 +26,8 @@
             @endforeach
         </tbody>        
     </table>
+    
+    {{-- Para exibir os links para navegação na paginação --}}
+    {!! $products->links() !!}
 @endsection
 
