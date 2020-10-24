@@ -9,12 +9,13 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     protected $request;
+    private $repository;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, Product $product)
     {
 
         $this->request = $request;
-        
+        $this->repository = $product;
         //Aplicando middleware (filtros)
 
         //Middleware apenas em métodos específicos
@@ -73,7 +74,7 @@ class ProductController extends Controller
 
         //Nesse ponto todos os dados vindos do form
         //são gravados no banco
-        Product::create($data);
+        $this->repository->create($data);
 
         return redirect()->route('products.index');
     }
@@ -92,7 +93,7 @@ class ProductController extends Controller
         //um item através do seu id
         //caso o valor não seja encontrado é retornado NULL
         //$product = Product::where('id', $id)->first();
-        if (!$product = Product::find($id))
+        if (!$product = $this->repository->find($id))
             //redirect()->back() retorna ao ponto anterior
             return redirect()->back();
 
@@ -132,6 +133,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (!$product = $this->repository->find($id))
+            //redirect()->back() retorna ao ponto anterior
+            return redirect()->back();
+
+        $product->delete();
+
+        return redirect()->route('products.index');
     }
 }
