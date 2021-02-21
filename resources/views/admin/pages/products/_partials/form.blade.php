@@ -10,6 +10,7 @@
     O atributo old retorna o último valor registrado no campo,
     o Laravel guarda este valor em um sessão temporária chamada sessão flash 
 --}}
+@include('admin.includes.alerts')
 <div class="form-group">
     <input type="text" class="form-control" name="name" placeholder="Nome:" value="{{ $product->name ?? old('name') }}">
 </div>
