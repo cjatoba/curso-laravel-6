@@ -116,7 +116,6 @@ class ProductController extends Controller
         return view('admin.pages.products.edit', [
             'product' => $product
         ]);
-
     }
 
     /**
@@ -133,7 +132,7 @@ class ProductController extends Controller
             return redirect()->back();
 
         $product->update($request->all());
-        
+
         return redirect()->route('products.index');
     }
 
@@ -152,5 +151,22 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index');
+    }
+
+    /**
+     * Search Products
+     */
+    public function search(Request $request)
+    {
+        //O $request->except obtem todos os dados da request com 
+        //exceção do _token
+        $filters = $request->except('_token');
+
+        $products = $this->repository->search($request->filter);
+
+        return view('admin.pages.products.index', [
+            'products' => $products,
+            'filters' => $filters
+        ]);
     }
 }

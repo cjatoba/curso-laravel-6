@@ -1,5 +1,9 @@
 <?php
 
+//Rota para busca de produtos
+//a rota é do tipo any para não perder a paginação na lista de produtos
+Route::any('products/search', 'ProductController@search')->name('products.search');
+
 //A rota resource já cria as rotas necessárias para o CRUD
 Route::resource('products', 'ProductController');
 
