@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -72,6 +73,16 @@ class ProductController extends Controller
         //a função all() para retornar todos os dados do form
         $data = $request->only('name', 'description', 'price');
 
+        //Verifica se existe imagem na requisição e se ela é valida
+        if ($request->hasFile('image') && $request->image->isValid()){
+            //O método store guarda os dados do banco
+            //Caso queira definir um nome para imagem utilizar storeAs no lugar de store
+            //store gera por padrão um nome
+            $imagePath = $request->image->store('products');
+
+            $data['image'] = $imagePath;
+        }
+
         //Nesse ponto todos os dados vindos do form
         //são gravados no banco
         $this->repository->create($data);
@@ -131,7 +142,24 @@ class ProductController extends Controller
             //redirect()->back() retorna ao ponto anterior
             return redirect()->back();
 
-        $product->update($request->all());
+        $data = $request->all();
+
+        //Verifica se existe imagem na requisição e se ela é valida
+        if ($request->hasFile('image') && $request->image->isValid()){
+
+            //Verifica se já existe uma imagem e deleta caso já exista para salvar uma nova
+            if ($product->image && Storage::exists($product->image)){
+                Storage::delete($product->image);
+            }
+
+            //O método store guarda os dados do banco
+            //Caso queira definir um nome para imagem utilizar storeAs no lugar de store
+            //store gera por padrão um nome
+            $imagePath = $request->image->store('products');
+            $data['image'] = $imagePath;
+        }
+
+        $product->update($data);
 
         return redirect()->route('products.index');
     }
@@ -148,6 +176,11 @@ class ProductController extends Controller
             //redirect()->back() retorna ao ponto anterior
             return redirect()->back();
 
+        //Verifica se já existe uma imagem e deleta caso já exista para salvar uma nova
+        if ($product->image && Storage::exists($product->image)){
+            Storage::delete($product->image);
+        }
+
         $product->delete();
 
         return redirect()->route('products.index');
@@ -158,7 +191,7 @@ class ProductController extends Controller
      */
     public function search(Request $request)
     {
-        //O $request->except obtem todos os dados da request com 
+        //O $request->except obtem todos os dados da request com
         //exceção do _token
         $filters = $request->except('_token');
 

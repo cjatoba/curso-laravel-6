@@ -9,15 +9,16 @@ class Product extends Model
     //protected $table = 'products';
 
     //O fillable especifica quais campos podem ser registrados no banco
-    //garantindo uma mairo segurança a ataques
+    //garantindo uma maior segurança a ataques
     //pois o usuários não conseguirá inserir dados em outros campos
+    //para a imagem ser salva é preciso estar no fillable
     protected $fillable = ['name', 'price', 'description', 'image'];
 
     /**
      * Filter products
      */
     public function search($filter = null){
-        //o parâmetro use($filter) permite que a variavel $filter que vem como 
+        //o parâmetro use($filter) permite que a variavel $filter que vem como
         //parâmetro no método search possa ser utilizada dentro da função de callback
         //caso contrário ocorreria um erro
         $results = $this->where(function($query) use($filter){
