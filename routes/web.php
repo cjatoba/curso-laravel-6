@@ -129,5 +129,3 @@ Route::get('/', function () {
 
 //O parâmetro ['register' => false] desabilita a função de registro
 Auth::routes(['register' => false]);
-
-Route::get('/home', 'HomeController@index')->name('home');
