@@ -2,10 +2,10 @@
 
 //Rota para busca de produtos
 //a rota é do tipo any para não perder a paginação na lista de produtos
-Route::any('products/search', 'ProductController@search')->name('products.search');
+Route::any('products/search', 'ProductController@search')->name('products.search')->middleware('auth');
 
 //A rota resource já cria as rotas necessárias para o CRUD
-Route::resource('products', 'ProductController');
+Route::resource('products', 'ProductController')->middleware('auth');
 
 
 //Rotas da forma correta
@@ -39,7 +39,7 @@ Route::get('/login', function() {
 //Ao utilizar uma rota com middleware Auth a rota é direcionada
 //para a login caso o user não esteja autenticado
 
-//Grupo de middleware, prefix, namespace e name 
+//Grupo de middleware, prefix, namespace e name
 //pode ser apenas um ou um array com vários midlewares
 Route::group([
         'middleware' => [],
@@ -72,7 +72,7 @@ Route::get('/name-url', function() {
     return 'Rota nomeada';
 })->name('url-name');
 
-//Rota direta para view sem passar por Controller 
+//Rota direta para view sem passar por Controller
 //(Recomendado apenas para views que não precisem de lógica nem parâmetros)
 Route::view('/view', 'welcome');
 
@@ -126,3 +126,8 @@ Route::get('/contato', function(){
 Route::get('/', function () {
     return view('welcome');
 });
+
+//O parâmetro ['register' => false] desabilita a função de registro
+Auth::routes(['register' => false]);
+
+Route::get('/home', 'HomeController@index')->name('home');
