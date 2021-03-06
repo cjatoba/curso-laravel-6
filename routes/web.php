@@ -5,7 +5,7 @@
 Route::any('products/search', 'ProductController@search')->name('products.search')->middleware('auth');
 
 //A rota resource já cria as rotas necessárias para o CRUD
-Route::resource('products', 'ProductController')->middleware('auth');
+Route::resource('products', 'ProductController')->middleware(['auth', 'check.is.admin']);
 
 
 //Rotas da forma correta
